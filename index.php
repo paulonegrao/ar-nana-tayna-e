@@ -1,1 +1,1 @@
-<?php include_once("testClick3.html"); ?>
+<?php include_once("click3D.html"); ?>
