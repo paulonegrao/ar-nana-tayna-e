@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!-- Augmented Reality on the Web in 10 lines of html! https://github.com/jeromeetienne/ar.js 
+      <script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
+      <script>
+        THREEx.ArToolkitContext.baseURL =
+        "https://rawgit.com/jeromeetienne/ar.js/master/three.js/";
+      </script>
+    -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+  <script>
+    /*
+      window.addEventListener("click", function() {
+        var v = document.querySelector("#dinos");
+        //v.volume = 1;
+        v.play();
+      });
+      */
+
+    window.onload = function () {
+
+      let allow_clicks = false;
+      document.querySelector("#scene")
+        .addEventListener('markerFound', (evt) => {
+          allow_clicks = true
+        })
+
+      document.querySelector("#scene")
+        .addEventListener('markerLost', (evt) => {
+          allow_clicks = false
+        })
+
+      document.querySelector("#press-here")
+        .addEventListener('click', (evt) => {
+          if (allow_clicks) {
+            window.location = "https://cybersift.io"
+          }
+        });
+    };
+  </script>
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene id="scene" cursor="fuse: false; rayOrigin: mouse;" embedded
+    arjs="debugUIEnabled: false; trackingMethod: best; sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+    <a-marker type="barcode" value="17">
+      <a-entity scale="1 1 1" rotation="0 0 0">
+        <a-image id="logo" geometry="primitive: plane" src="./images/qr-code-dots.png" rotation="-90 0 0" width="3"
+          height="3" position='0 0 -2.5'></a-image>
+        <a-image id="press-here" geometry="primitive: plane" src="./images/qr-code-black.png" rotation="-90 0 0"
+          width="2" height="2" position='0 0 0'></a-image>
+      </a-entity>
+    </a-marker>
+    <a-entity camera mouse-cursor position="0 0 0"></a-entity>
+  </a-scene>
+  -->
+</body>
+
+</html>
