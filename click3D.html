@@ -11,12 +11,20 @@
 
 <script>
     // here we register che 'clickhandler' component
+    let videoPlaying = false;
     AFRAME.registerComponent("clickhandler", {
         init: function () {
             // we add the click event listener to any instance of this component
             this.el.addEventListener("click", () => {
                 var v = document.querySelector("#dinos");
-                v.play();
+                if (videoPlaying) {
+                    v.pause();
+                    videoPlaying = false;
+                }
+                else {
+                    v.play();
+                    videoPlaying = true;
+                }
             });
         }
     });
