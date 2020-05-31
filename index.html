@@ -40,6 +40,7 @@
 
       document.querySelector("#press-here")
         .addEventListener('click', (evt) => {
+          console.log("clicked");
           if (allow_clicks) {
             console.log("go website");
             window.location = "https://cybersift.io";
@@ -54,10 +55,10 @@
     arjs="debugUIEnabled: false; trackingMethod: best; sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
     <a-marker type="barcode" value="17">
       <a-entity scale="1 1 1" rotation="0 0 0">
-        <a-image id="logo" geometry="primitive: plane" src="./images/qr-code-dots.png" rotation="-90 0 0" width="3"
-          height="3" position='0 0 -2.5'></a-image>
-        <a-image id="press-here" geometry="primitive: plane" src="./images/qr-code-black.png" rotation="-90 0 0"
-          width="2" height="2" position='0 0 0'></a-image>
+        <a-image id="logo" geometry="primitive: plane" src="./images/catibiribinhaAvatar.png" rotation="-90 0 0"
+          width="3" height="3" position='0 0 -2.5'></a-image>
+        <a-image id="press-here" geometry="primitive: plane" src="./images/handClick.png" rotation="-90 0 0" width="2"
+          height="2" position='0 0 0'></a-image>
       </a-entity>
     </a-marker>
     <a-entity camera mouse-cursor position="0 0 0"></a-entity>
