@@ -1,1 +1,1 @@
-<?php include_once("testClick.html"); ?>
+<?php include_once("index.html"); ?>

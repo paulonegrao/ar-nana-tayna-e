@@ -28,18 +28,21 @@
       let allow_clicks = false;
       document.querySelector("#scene")
         .addEventListener('markerFound', (evt) => {
-          allow_clicks = true
+          allow_clicks = true;
+          console.log("true");
         })
 
       document.querySelector("#scene")
         .addEventListener('markerLost', (evt) => {
-          allow_clicks = false
+          allow_clicks = false;
+          console.log("false");
         })
 
       document.querySelector("#press-here")
         .addEventListener('click', (evt) => {
           if (allow_clicks) {
-            window.location = "https://cybersift.io"
+            console.log("go website");
+            window.location = "https://cybersift.io";
           }
         });
     };
