@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Click Location Based Example</title>
+    <title>Click 3D Element</title>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
@@ -36,8 +36,14 @@
             <a-video clickhandler src="#dinos" width="1.8" height="1" position="0 0.5 0" rotation="270 0 0" play="true">
             </a-video>
         </a-marker>
-        <a-camera gps-camera rotation-reader> </a-camera>
+        <!--
+            <a-camera gps-camera rotation-reader> </a-camera>
+        -->
+        <a-entity camera></a-entity>
     </a-scene>
 </body>
+embedded
+artoolkit="sourceType: webcam;"
+arjs="debugUIEnabled: false;"
 
 </html>
