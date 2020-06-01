@@ -16,7 +16,7 @@
     let ex = "nada";
     AFRAME.registerComponent("clickhandler", {
         init: function () {
-            // we add the click event listener to any instance of this component
+            // adding click listners to video elements
             this.el.addEventListener("click", () => {
                 var videoID = this.el.id;
                 var v = document.querySelector(`#${videoID}`);
