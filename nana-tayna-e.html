@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Click 3D Element</title>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+</head>
+
+<script>
+    // here the 'vidHandler' component
+    let v1Playing = false;
+    let v2Playing = false;
+    let ex = "nada";
+    AFRAME.registerComponent("clickhandler", {
+        init: function () {
+            // we add the click event listener to any instance of this component
+            this.el.addEventListener("click", () => {
+                var videoID = this.el.id;
+                var v = document.querySelector(`#${videoID}`);
+                v.crossOrigin = 'anonymous';
+
+                if (v.attributes.videoplaying.value == "true") {
+                    v.pause();
+                    v.attributes.videoplaying.value = "false";
+                }
+                else {
+                    v.play();
+                    v.attributes.videoplaying.value = "true";
+                }
+
+            });
+        }
+    });
+    /*
+    AFRAME.registerComponent('vidHandler', {
+        // define a variable in which we will keep the video element
+        schema: {
+            video: { type: 'selector' },
+        },
+        init: function () {
+            // use the video from the schema
+            this.video = this.data.video
+            this.video.pause()
+        },
+        tick: function () {
+            if (this.el.object3D.visible == true) {
+                if (!this.toggle) {
+                    this.toggle = true;
+                    this.video.play()
+                }
+            } else {
+                this.toggle = false;
+                this.video.pause()
+            }
+        }
+    })
+    */
+</script>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler];"
+        vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-assets>
+            <video id="v1" videoplaying="false" autoplay loop="true" src="./assets/nana-tayna-e-mini-720p.mp4"
+                crossorigin webkit-playsinline playsinline controls preload="auto">
+            </video>
+            <video id="v2" videoplaying="false" autoplay loop="true" src="./assets/pau-de-chuva.mp4" crossorigin
+                webkit-playsinline playsinline controls>
+            </video>
+        </a-assets>
+        <a-marker preset="hiro">
+            <a-video id="v1" clickhandler src="#v1" width="1.8" height="1" position="0 0.5 0" rotation="270 0 0"
+                play="true">
+            </a-video>
+        </a-marker>
+        <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt"
+            pattern-pattern-rabiola-qr.patt>
+            <a-video id="v2" clickhandler src="#v2" width="1.8" height="1" position="0 0.5 0" rotation="270 0 0"
+                play="true">
+            </a-video>
+        </a-marker>
+
+
+        <a-camera gps-camera rotation-reader> </a-camera>
+        <!--
+        <a-assets>
+            <video id="dinos" autoplay loop="true" src="./assets/silvia-negrao-dinossauros.mp4" crossorigin
+                webkit-playsinline playsinline controls></video>
+        </a-assets>
+        <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt"
+            pattern-pattern-rabiola-qr.patt>
+            <a-video clickhandler src="#dinos" width="1.8" height="1" position="0 0.5 0" rotation="270 0 0" play="true">
+            </a-video>
+        </a-marker>
+            <a-entity camera></a-entity>
+        -->
+    </a-scene>
+</body>
+
+</html>
