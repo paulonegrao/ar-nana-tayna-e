@@ -40,35 +40,34 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler];"
         vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-camera gps-camera rotation-reader> </a-camera>
         <a-assets>
             <video id="webcam" playsinline crossorigin="anonymous"></video>
-            <texturevideo id="fractal" autoplay loop="true" src="./assets/SphereVideo.webm" crossorigin="anonymous">
-                </video>
-                <texturevideo id="clock" autoplay loop="true" src="./assets/SphereVideo.webm" crossorigin="anonymous">
-                    </video>
+            <texturevideo id="nana-L" autoplay loop="true" src="./assets/nana-tayna-e-mini-R.webm"
+                crossorigin="anonymous">
+            </texturevideo>
+            <texturevideo id="nana-R" autoplay loop="true" src="./assets/nana-tayna-e-mini-R.webm"
+                crossorigin="anonymous">
+            </texturevideo>
         </a-assets>
-        <!-- video screen -->
-        <a-box src="#webcam" position="11  8 0" rotation="0 90 0" width="15" height="10"></a-box>
+
         <!-- floor -->
-        <a-plane src="#clock" position="0 0 0" rotation="-90 0 0" width="25" height="25"></a-plane>
+        <a-plane src="#clock" position="0 0 0" rotation="-90 0 0" width=".3" height=".3"></a-plane>
 
 
-        <!-- Using the asset management system. -->
-        <a-box src="#fractal" position="0  12.5 12" rotation="0 0 0" width="25" height="25"></a-box>
-        <a-box src="#fractal" position="12  12.5 0" rotation="0 90 0" width="25" height="25"></a-box>
-        <a-box src="#fractal" position="-12  12.5 0" rotation="0 90 0" width="25" height="25"></a-box>
-        <a-box src="#fractal" position="0  25 0" rotation="90 0 0" width="25" height="25"></a-box>
-        <a-box src="#fractal" position="0  12.5 -12" rotation="0 0 0" width="25" height="25"></a-box>
-        <!--
-            <a-assets>
-                <video id="SphereVideo" autoplay loop="true" src="./assets/SphereVideo.m4v" webkit-playsinline>
-            </a-assets>
-            
-            <a-videosphere width="9" height="6" src="./assets/SphereVideo.m4v"></a-videosphere>
-        -->
+        <!-- Box nana Left -->
+        <a-box src="#nana-L" position="0  2.5 2" rotation="0 0 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-L" position="2  2.5 0" rotation="0 90 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-L" position="-2  2.5 0" rotation="0 90 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-L" position="0  25 0" rotation="90 0 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-L" position="0  2.5 -2" rotation="0 0 0" width=".3" height=".6"></a-box>
+        <!-- Box nana Right -->
+        <a-box src="#nana-R" position="0  2.5 2" rotation="0 0 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-R" position="2  2.5 0" rotation="0 90 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-R" position="-2  2.5 0" rotation="0 90 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-R" position="0  25 0" rotation="90 0 0" width=".3" height=".6"></a-box>
+        <a-box src="#nana-R" position="0  2.5 -2" rotation="0 0 0" width=".3" height=".6"></a-box>
 
-        <!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
-        <!--<a-videosphere src="video/SphereVideo.webm"></a-videosphere>-->
     </a-scene>
 </body>
 
