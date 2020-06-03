@@ -1,1 +1,1 @@
-<?php include_once("videoSphere.html"); ?>
+<?php include_once("videoSphereMix.html"); ?>
