@@ -10,24 +10,15 @@
 </head>
 
 <script>
+    // here we register che 'clickhandler' component
     AFRAME.registerComponent("clickhandler", {
         init: function () {
-            // adding click listners to video elements
+            // we add the click event listener to any instance of this component
             this.el.addEventListener("click", () => {
-                /*var videoID = this.el.getAttribute("eID");
-                var v = document.querySelector(`#${videoID}`);
-                v.crossOrigin = 'anonymous';
+                //var v = document.querySelector(`#${videoID}`);
+                alert("Clicked!");
 
-                if (v.attributes.videoplaying.value == "true") {
-                    v.pause();
-                    v.attributes.videoplaying.value = "false";
-                }
-                else {
-                    v.play();
-                    v.attributes.videoplaying.value = "true";
-                }*/
-                alert("jhdjfjadkj");
-
+                //alert(v);
             });
         }
     });
