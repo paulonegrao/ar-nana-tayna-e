@@ -15,15 +15,29 @@
             // adding click listners to video elements
             this.el.addEventListener("click", () => {
                 var videoID = this.el.getAttribute("elementID");
-                var v = document.querySelector(`#${videoID}`);
+                var vArray = [0];
 
-                if (v.attributes.videoplaying.value == "true") {
-                    v.pause();
-                    v.attributes.videoplaying.value = "false";
+                if (videoID == "v1" || videoID == "v2" || videoID == "v3") {
+                    vArray = ["v1", "v2", "v3"];
                 }
                 else {
-                    v.play();
-                    v.attributes.videoplaying.value = "true";
+                    vArray = [videoID];
+                }
+
+                for (i = 0; i < vArray.length; ++i) {
+
+                    var v = document.querySelector(`#${vArray[i]}`);
+
+                    if (v.attributes.videoplaying.value == "true") {
+                        v.pause();
+                        v.muted = !v.muted;
+                        v.attributes.videoplaying.value = "false";
+                    }
+                    else {
+                        v.play();
+                        v.muted = !v.muted;
+                        v.attributes.videoplaying.value = "true";
+                    }
                 }
 
             });
@@ -43,24 +57,31 @@
                 preload="auto">
             </video>
             <video id="v2" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-R.png"
+                src="./assets/nana-tayna-e-mini-M.mp4" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
+            <video id="v3" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-R.png"
                 src="./assets/nana-tayna-e-mini-R.mp4" crossorigin webkit-playsinline playsinline controls
                 preload="auto">
             </video>
         </a-assets>
         <a-marker preset="hiro">
-            <a-box elementID="v1" clickhandler material='src: #v1' width="1" height="2" position="0 0.5 0"
+            <a-box elementID="v1" clickhandler material='src: #v1' width="1" height="2" position="-1 0 0"
+                rotation="270 0 0">
+            </a-box>
+            <a-box elementID="v2" clickhandler material='src: #v2' width="1" height="2" position="0 0 0"
+                rotation="270 0 0">
+            </a-box>
+            <a-box elementID="v3" clickhandler material='src: #v3' width="1" height="2" position="1 0 0"
                 rotation="270 0 0">
             </a-box>
         </a-marker>
-        <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt">
-            <a-box elementID="v2" clickhandler material='src: #v2' width="1" height="2" position="0 0.5 0"
-                rotation="270 0 0">
-            </a-box>
-        </a-marker>
-        <a-entity camera></a-entity>
+        <a-entity camera position="0 0 0"></a-entity>
     </a-scene>
 </body>
 <!--
+</a-marker>
+<a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt">
 
 -->
 
