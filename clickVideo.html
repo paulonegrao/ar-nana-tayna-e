@@ -27,13 +27,24 @@
     for performances reasons. See: (https://aframe.io/docs/1.0.0/introduction/interactions-and-controllers.html) -->
     <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler];"
         vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        <!-- this entity, potentially every other on the a-scene, has the 'clickhandler' component
-      and will behave has we have defined: it will handle click events! -->
+        <a-assets>
+            <video id="v1" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-L.png"
+                src="./assets/nana-tayna-e-mini-L.webm" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
+            <video id="v2" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-R.png"
+                src="./assets/nana-tayna-e-mini-R.webm" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
+        </a-assets>
         <a-marker preset="hiro">
-            <a-box clickhandler material="color: red;" scale="2 2 2">
+            <a-box id="v1" clickhandler material='src: #v1' width="1" height="2" position="-3 0 0" rotation="0 0 0">
             </a-box>
         </a-marker>
-
+        <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt">
+            <a-box id="v2" clickhandler material='src: #v2' width="1" height="2" position="3 0 0" rotation="0 0 0">
+            </a-box>
+        </a-marker>
         <a-camera rotation-reader> </a-camera>
     </a-scene>
 </body>
