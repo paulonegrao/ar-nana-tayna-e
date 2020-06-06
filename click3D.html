@@ -37,8 +37,8 @@
     <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler];"
         vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
         <a-assets>
-            <video id="dinos" autoplay loop="true" src="./assets/silvia-negrao-dinossauros.mp4" crossorigin
-                webkit-playsinline playsinline controls></video>
+            <video id="dinos" autoplay loop="true" src="./assets/nana-tayna-e-mini-L.webm" crossorigin
+                webkit-playsinline playsinline controls preload="auto"></video>
         </a-assets>
         <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt"
             pattern-pattern-rabiola-qr.patt>
@@ -51,8 +51,6 @@
         <a-entity camera></a-entity>
     </a-scene>
 </body>
-embedded
-artoolkit="sourceType: webcam;"
-arjs="debugUIEnabled: false;"
+
 
 </html>
