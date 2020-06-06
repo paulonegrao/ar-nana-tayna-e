@@ -1,1 +1,1 @@
-<?php include_once("clickGPS.html"); ?>
+<?php include_once("nana-tayna-e.html"); ?>

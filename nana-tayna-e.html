@@ -55,14 +55,15 @@
                 preload="auto">
             </video>
         </a-assets>
-        <a-marker preset="hiro">
-            <a-box id="v1" clickhandler material='src: #v1' width="1" height="2" position="-3 0 0" rotation="0 0 990">
-            </a-box>
+        <a-marker-camera preset="hiro"></a-marker-camera>
+        <a-box id="v1" clickhandler material='src: #v1' width="1" height="2" position="-3 0 0" rotation="0 0 990">
+        </a-box>
         </a-marker>
-        <a-marker preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt">
-            <a-video id="v2" clickhandler material='src: #v2' width="1" height="2" depth=".3" position="3 0 0"
-                rotation="3 0 0">
-            </a-video>
+        <a-marker-camera preset="custom" type="pattern" url="./assets/pattern-pn-marker-qr-saurus.patt">
+        </a-marker-camera>
+        <a-video id="v2" clickhandler material='src: #v2' width="1" height="2" depth=".3" position="3 0 0"
+            rotation="3 0 0">
+        </a-video>
         </a-marker>
         <!--
             <a-entity camera mouse-cursor position="0 0 0"></a-entity>
