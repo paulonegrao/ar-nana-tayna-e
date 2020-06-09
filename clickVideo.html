@@ -66,8 +66,11 @@
                 src="./assets/nana-tayna-e-mini-R.mp4" crossorigin webkit-playsinline playsinline controls
                 preload="auto">
             </video>
-            <video id="v4" videoplaying="false" autoplay muted loop="true" src="./assets/catibiribloco-PauDeChuva.m4v"
+            <video id="v4" videoplaying="false" autoplay muted loop="true" src="./assets/video-PauDeChuva.m4v"
                 crossorigin webkit-playsinline playsinline controls preload="auto">
+            </video>
+            <video id="v5" videoplaying="false" autoplay muted loop="true" src="./assets/video-Apito.m4v" crossorigin
+                webkit-playsinline playsinline controls preload="auto">
             </video>
         </a-assets>
         <a-marker preset="custom" type="pattern" url="./assets/pattern-marker-NanaTaynaE.patt">
@@ -83,6 +86,11 @@
         </a-marker>
         <a-marker preset="custom" type="pattern" url="./assets/pattern-maker-PauDeChuva.patt">
             <a-box elementID="v4" clickhandler material='src: #v4' width="1" height="1" position="0 0 0"
+                rotation="0 0 0">
+            </a-box>
+        </a-marker>
+        <a-marker preset="custom" type="pattern" url="./assets/pattern-marker-Apito.patt">
+            <a-box elementID="v5" clickhandler material='src: #v5' width="1" height="1" position="0 0 0"
                 rotation="0 0 0">
             </a-box>
         </a-marker>
