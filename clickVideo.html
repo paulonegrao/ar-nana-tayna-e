@@ -16,7 +16,7 @@
             this.el.addEventListener("click", () => {
                 var videoID = this.el.getAttribute("elementID");
                 var vArray = [0];
-                debugger;
+                //alert(`videoID: ${videoID}`);
 
                 if (videoID == "v1" || videoID == "v2" || videoID == "v3") {
                     vArray = ["v1", "v2", "v3"];
@@ -24,7 +24,7 @@
                 else {
                     vArray = [videoID];
                 }
-
+                alert(`vArray: ${vArray}`);
                 for (i = 0; i < vArray.length; ++i) {
 
                     var v = document.querySelector(`#${vArray[i]}`);
