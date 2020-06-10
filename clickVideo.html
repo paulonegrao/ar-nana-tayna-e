@@ -44,6 +44,40 @@
             });
         }
     });
+    AFRAME.registerComponent("clickhandler1", {
+        init: function () {
+            // adding click listners to video elements
+            this.el.addEventListener("click", () => {
+                var videoID = this.el.getAttribute("elementID");
+                var vArray = [0];
+                //alert(`videoID: ${videoID}`);
+
+                if (videoID == "v1" || videoID == "v2" || videoID == "v3") {
+                    vArray = ["v1", "v2", "v3"];
+                }
+                else {
+                    vArray = [videoID];
+                }
+                alert(`vArray do 1: ${vArray}`);
+                for (i = 0; i < vArray.length; ++i) {
+
+                    var v = document.querySelector(`#${vArray[i]}`);
+
+                    if (v.attributes.videoplaying.value == "true") {
+                        v.pause();
+                        v.muted = !v.muted;
+                        v.attributes.videoplaying.value = "false";
+                    }
+                    else {
+                        v.play();
+                        v.muted = !v.muted;
+                        v.attributes.videoplaying.value = "true";
+                    }
+                }
+
+            });
+        }
+    });
 </script>
 
 <body style="margin: 0; overflow: hidden;">
@@ -51,8 +85,9 @@
     <!-- with cursor and raycaster, we define a raycaster handler.
     With 'raycaster' we add a CSS selector to match the only elements that will react to click events,
     for performances reasons. See: (https://aframe.io/docs/1.0.0/introduction/interactions-and-controllers.html) -->
-    <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler];"
-        vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+        raycaster="objects: [clickhandler], [clickhandler1];" vr-mode-ui="enabled: false" embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;">
         <a-assets>
             <video id="v1" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-L.png"
                 src="./assets/nana-tayna-e-mini-L.mp4" crossorigin webkit-playsinline playsinline controls
@@ -90,7 +125,7 @@
             </a-box>
         </a-marker>
         <a-marker preset="custom" type="pattern" url="./assets/pattern-marker-Apito.patt">
-            <a-box elementID="v5" clickhandler material='src: #v5' width="1" height="1" position="0 0 0"
+            <a-box elementID="v5" clickhandler1 material='src: #v5' width="1" height="1" position="0 0 0"
                 rotation="270 0 0">
             </a-box>
         </a-marker>
