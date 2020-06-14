@@ -107,20 +107,24 @@
                 webkit-playsinline playsinline controls preload="auto">
             </video>
         </a-assets>
-        <a-marker preset="hiro" clickhandler>
-            <a-box elementID="v1" material='src: #v1' width="1" height="2" position="-1 0 0" rotation="270 0 0">
+        <a-marker preset="hiro">
+            <a-box elementID="v1" clickhandler material='src: #v1' width="1" height="2" position="-1 0 0"
+                rotation="270 0 0">
             </a-box>
-            <a-box elementID="v2" material='src: #v2' width="1" height="2" position="0 0 0" rotation="270 0 0">
+            <a-box elementID="v2" clickhandler material='src: #v2' width="1" height="2" position="0 0 0"
+                rotation="270 0 0">
             </a-box>
-            <a-box elementID="v3" material='src: #v3' width="1" height="2" position="1 0 0" rotation="270 0 0">
+            <a-box elementID="v3" clickhandler material='src: #v3' width="1" height="2" position="1 0 0"
+                rotation="270 0 0">
             </a-box>
         </a-marker>
-        <a-marker preset="kanji" clickhandler>
-            <a-box elementID="v4" material='src: #v4' width="1" height="1" position="-2 0 0" rotation="270 0 0">
+        <a-marker preset="kanji">
+            <a-box elementID="v4" clickhandler1 material='src: #v4' width="1" height="1" position="-3 2 0"
+                rotation="270 0 0">
             </a-box>
         </a-marker>
         <a-marker cursor="rayOrigin: mouse" preset="custom" type="pattern" url="./assets/pattern-marker-Apito.patt">
-            <a-box elementID="v5" clickhandler1 material='src: #v5' width="1" height="1" position="0 0 0"
+            <a-box elementID="v5" clickhandler material='src: #v5' width="1" height="1" position="0 0 0"
                 rotation="270 0 0">
             </a-box>
         </a-marker>
