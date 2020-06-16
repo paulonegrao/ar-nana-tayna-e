@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Gesture Interactions - A-Frame & AR.js</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="gesture-detector.js"></script>
+  <script src="gesture-handler.js"></script>
+  <script>
+    AFRAME.registerComponent("clickable", {
+      init: function () {
+        // adding click listners to video elements
+        this.el.addEventListener("click", () => {
+          var videoID = this.el.getAttribute("elementID");
+          var vArray = [0];
+          //alert(`videoID: ${videoID}`);
+
+          if (videoID == "v1" || videoID == "v2" || videoID == "v3") {
+            vArray = ["v1", "v2", "v3"];
+          }
+          else {
+            vArray = [videoID];
+          }
+          for (i = 0; i < vArray.length; ++i) {
+
+            var v = document.querySelector(`#${vArray[i]}`);
+
+            if (v.attributes.videoplaying.value == "true") {
+              v.pause();
+              v.muted = !v.muted;
+              v.attributes.videoplaying.value = "false";
+            }
+            else {
+              v.play();
+              v.muted = !v.muted;
+              v.attributes.videoplaying.value = "true";
+            }
+          }
+
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <a-scene renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector
+    vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;" id="scene">
+    <a-assets>
+      <video id="v1" videoplaying="false" autoplay muted loop="true" src="./assets/nana-tayna-e-mini-L.mp4" crossorigin
+        webkit-playsinline playsinline controls preload="auto">
+      </video>
+      <video id="v2" videoplaying="false" autoplay muted loop="true" src="./assets/nana-tayna-e-mini-M.mp4" crossorigin
+        webkit-playsinline playsinline controls preload="auto">
+      </video>
+      <video id="v3" videoplaying="false" autoplay muted loop="true" src="./assets/nana-tayna-e-mini-R.mp4" crossorigin
+        webkit-playsinline playsinline controls preload="auto">
+      </video>
+      <video id="v4" videoplaying="false" autoplay muted loop="true" src="./assets/video-PauDeChuva.m4v" crossorigin
+        webkit-playsinline playsinline controls preload="auto">
+      </video>
+      <video id="v5" videoplaying="false" autoplay muted loop="true" src="./assets/video-Apito.m4v" crossorigin
+        webkit-playsinline playsinline controls preload="auto">
+      </video>
+      <a-asset-item id="bowser" src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb">
+      </a-asset-item>
+    </a-assets>
+
+    <a-marker preset="hiro" emitevents="true" id="markerA">
+      <a-box elementID="v4" clickable material='src: #v4' width="1" height="1" position="0 0 0" rotation="0 0 0"
+        class="clickable" gesture-handler>
+      </a-box>
+    </a-marker>
+    <a-entity camera cursor="fuse: true; fuseTimeout: 0;" raycaster="objects: [clickable];"></a-entity>
+  </a-scene>
+</body>
+<!--
+        <a-entity
+          id="bowser-model"
+          gltf-model="#bowser"
+          position="0 0 0"
+          scale="0.05 0.05 0.05"
+          class="clickable"
+          gesture-handler
+        >
+        </a-entity>
+
+  -->
+
+</html>

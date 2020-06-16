@@ -1,1 +1,1 @@
-<?php include_once("clickVideo.html"); ?>
+<?php include_once("indexGestures.html"); ?>
