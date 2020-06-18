@@ -9,32 +9,60 @@
 
     <!-- import events.js script -->
     <script>
-        window.onload = function () {
-            document
-                .querySelector("#animated-marker")
-                .addEventListener("click", function () {
-                    // here you can change also a-scene or a-entity properties, like
-                    // changing your 3D model source, size, position and so on
-                    // or you can just open links, trigger actions...
-                    alert("Hi there!");
-                });
-        };
+        /* window.onload = function () {
+             document
+                 .querySelector("#animated-marker")
+                 .addEventListener("click", function () {
+                     // here you can change also a-scene or a-entity properties, like
+                     // changing your 3D model source, size, position and so on
+                     // or you can just open links, trigger actions...
+                     alert("Hi there!");
+                 });
+         };*/
         AFRAME.registerComponent('markerhandler', {
-
             init: function () {
-                const animatedMarker = document.querySelector("#animated-marker");
-                const aEntity = document.querySelector("#animated-model");
-                alert(`marker= ${animatedMarker.id}`);
-                alert(`marker= ${aEntity.id}`);
+                const markerID = this.el.id;
+                const animatedMarker = document.querySelector(`#${markerID}`);
+                const elementID = markerID.split("m")[1];
+                const aEntity = document.querySelector(`#entity-v${elementID}`);
+
                 // every click, we make our model grow in size :)
                 animatedMarker.addEventListener('click', function (ev, target) {
-                    alert(`kjakdsjaksdjk`);
                     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+
                     if (aEntity && intersectedElement === aEntity) {
-                        const scale = aEntity.getAttribute('scale');
-                        Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-                        aEntity.setAttribute('scale', scale);
+
+                        var vArray = [0];
+
+                        // marker m4 plays multiple videos
+                        if (markerID == "m1") {
+                            vArray = ["v1", "v2", "v3"];
+                        }
+                        else {
+                            vArray = [`v${elementID}`];
+                        }
+
+                        //if (videoID && intersectedElement === videoID) {
+                        for (i = 0; i < vArray.length; ++i) {
+
+                            var v = document.querySelector(`#${vArray[i]}`);
+
+                            if (v.attributes.videoplaying.value == "true") {
+                                v.pause();
+                                v.muted = !v.muted;
+                                v.attributes.videoplaying.value = "false";
+                            }
+                            else {
+                                v.play();
+                                v.muted = !v.muted;
+                                v.attributes.videoplaying.value = "true";
+                            }
+                        }
+                        //const scale = aEntity.getAttribute('scale');
+                        //Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
+                        //aEntity.setAttribute('scale', scale);
                     }
+
                 });
             }
         });
@@ -73,14 +101,23 @@
         arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
         <a-assets>
-            <a-asset-item id="animated-asset"
-                src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/models/CesiumMan.gltf">
-            </a-asset-item>
+            <video id="v4" videoplaying="false" autoplay muted loop="true" src="./assets/video-PauDeChuva.m4v"
+                crossorigin webkit-playsinline playsinline controls preload="auto">
+            </video>
+            <video id="v5" videoplaying="false" autoplay muted loop="true" src="./assets/video-Apito.m4v" crossorigin
+                webkit-playsinline playsinline controls preload="auto">
+            </video>
         </a-assets>
 
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" preset="hiro">
-            <a-entity id="animated-model" gltf-model="#animated-asset" scale="2">
-            </a-entity>
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" class="animated-marker" id="m4"
+            preset="hiro">
+            <a-box id="entity-v4" material='src: #v4'>
+            </a-box>
+        </a-marker>
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" class="animated-marker" id="m5"
+            preset="kanji">
+            <a-box id="entity-v5" material='src: #v5'>
+            </a-box>
         </a-marker>
 
         <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
