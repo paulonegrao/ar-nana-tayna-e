@@ -11,7 +11,7 @@ AFRAME.registerComponent("gesture-handler", {
   init: function () {
     this.handleScale = this.handleScale.bind(this);
     this.handleRotation = this.handleRotation.bind(this);
-
+    debugger;
     this.isVisible = false;
     this.initialScale = this.el.object3D.scale.clone();
     this.scaleFactor = 1;

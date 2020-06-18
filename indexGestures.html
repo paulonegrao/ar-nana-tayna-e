@@ -13,13 +13,24 @@
   <script src="gesture-detector.js"></script>
   <script src="gesture-handler.js"></script>
   <script>
-    AFRAME.registerComponent("clickable", {
+    AFRAME.registerComponent("clickhandler", {
       init: function () {
         // adding click listners to video elements
-        this.el.addEventListener("click", () => {
-          var videoID = this.el.getAttribute("elementID");
+        // const vMarker = document.querySelector("#markerA");
+        //alert(vMarker.id);
+        this.el.addEventListener("click", function (ev, target) {
+          alert(`ev= ${ev}`);
+          alert(`target= ${target}`);
+          /*vMarker.sceneEl.addEventListener("click", function (ev, target) {
+            debugger;
+            alert(`ev= ${ev}`);
+            alert(`ev.detail= ${ev.detail}`);
+            alert(`ev.detail.intersectedEl= ${ev.detail.intersectedEl}`);
+            const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+            alert(`intersectedElement= ${intersectedElement}`);*/
+          var videoID = this.el.sceneEl.getAttribute("elementID");
+          alert(`videoID= ${videoID}`);
           var vArray = [0];
-          //alert(`videoID: ${videoID}`);
 
           if (videoID == "v1" || videoID == "v2" || videoID == "v3") {
             vArray = ["v1", "v2", "v3"];
@@ -27,6 +38,8 @@
           else {
             vArray = [videoID];
           }
+
+          //if (videoID && intersectedElement === videoID) {
           for (i = 0; i < vArray.length; ++i) {
 
             var v = document.querySelector(`#${vArray[i]}`);
@@ -42,6 +55,7 @@
               v.attributes.videoplaying.value = "true";
             }
           }
+          //}
 
         });
       }
@@ -50,9 +64,8 @@
 </head>
 
 <body>
-  <a-scene cursor="fuse: true; fuseTimeout: 0;" raycaster="objects: .clickable;"
-    renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector vr-mode-ui="enabled: false"
-    embedded arjs="sourceType: webcam; debugUIEnabled: false;" id="scene">
+  <a-scene renderer="logarithmicDepthBuffer: true;" gesture-detector vr-mode-ui="enabled: false" embedded
+    arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" id="scene">
     <a-assets>
       <video id="v1" videoplaying="false" autoplay muted loop="true" src="./assets/nana-tayna-e-mini-L.mp4" crossorigin
         webkit-playsinline playsinline controls preload="auto">
@@ -69,19 +82,19 @@
       <video id="v5" videoplaying="false" autoplay muted loop="true" src="./assets/video-Apito.m4v" crossorigin
         webkit-playsinline playsinline controls preload="auto">
       </video>
-      <a-asset-item id="bowser" src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb">
-      </a-asset-item>
     </a-assets>
 
-    <a-marker preset="hiro" emitevents="true" id="markerA">
-      <a-box elementID="v4" clickable material='src: #v4' width="1" height="1" position="0 0 0" rotation="0 0 0"
-        class="clickable" gesture-handler>
+    <a-marker preset="hiro" clickhandler cursor="rayOrigin: mouse" raycaster="objects: [clickhandler]" emitevents="true"
+      id="markerA" class="videoMarker">
+      <a-box elementID="v4" material='src: #v4' width="1" height="1" position="0 0 0" rotation="0 0 0" class="clickable"
+        gesture-handler>
       </a-box>
     </a-marker>
-    <a-entity camera></a-entity>
+    <a-entity camera mouse-cursor position="0 0 0"></a-entity>
   </a-scene>
 </body>
 <!--
+  cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [clickhandler]"
         <a-entity
           id="bowser-model"
           gltf-model="#bowser"

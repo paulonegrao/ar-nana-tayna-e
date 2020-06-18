@@ -5,10 +5,10 @@ AFRAME.registerComponent("gesture-detector", {
     element: { default: "" }
   },
 
-  init: function() {
+  init: function () {
     this.targetElement =
       this.data.element && document.querySelector(this.data.element);
-
+    debugger;
     if (!this.targetElement) {
       this.targetElement = this.el;
     }
@@ -26,7 +26,7 @@ AFRAME.registerComponent("gesture-detector", {
     this.targetElement.addEventListener("touchmove", this.emitGestureEvent);
   },
 
-  remove: function() {
+  remove: function () {
     this.targetElement.removeEventListener("touchstart", this.emitGestureEvent);
 
     this.targetElement.removeEventListener("touchend", this.emitGestureEvent);
@@ -100,7 +100,7 @@ AFRAME.registerComponent("gesture-detector", {
     }
   },
 
-  getTouchState: function(event) {
+  getTouchState: function (event) {
     if (event.touches.length === 0) {
       return null;
     }
@@ -147,7 +147,7 @@ AFRAME.registerComponent("gesture-detector", {
             sum +
             Math.sqrt(
               Math.pow(centerPositionRawX - touch.clientX, 2) +
-                Math.pow(centerPositionRawY - touch.clientY, 2)
+              Math.pow(centerPositionRawY - touch.clientY, 2)
             )
           );
         }, 0) / touchList.length;
