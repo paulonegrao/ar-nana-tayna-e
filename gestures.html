@@ -319,11 +319,11 @@
 
     <a-marker preset="kanji" id="markerA" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
       raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="entity-v4" material='src: #v4' width="1" height="1" position="0 0 0" rotation="0 0 0" class="clickable"
-        class="clickable" gesture-handler="minScale: 0.25; maxScale: 10">
+      <a-box id="entity-v4" material='src: #v4' width="1" height="1" scale="2 2 2" class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10">
       </a-box>
     </a-marker>
-    <a-entity camera mouse-cursor position="0 0 0"></a-entity>
+    <a-entity camera></a-entity>
   </a-scene>
 </body>
 <!--
