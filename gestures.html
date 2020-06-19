@@ -317,13 +317,19 @@
       </video>
     </a-assets>
 
-    <a-marker preset="kanji" id="markerA" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+    <a-marker preset="hiro" id="m4" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
       raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="entity-v4" material='src: #v4' width="1" height="1" scale="2 2 2" class="clickable"
+      <a-box id="entity-v4" material='src: #v4' width="1" height="1" position="0 0 0" scale="1 1 1" class="clickable"
         gesture-handler="minScale: 0.25; maxScale: 10">
       </a-box>
     </a-marker>
-    <a-entity camera position="0 1.6 0"></a-entity>
+    <a-marker preset="kanji" id="m5" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
+      raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
+      <a-box id="entity-v5" material='src: #v5' width="1" height="1" position="0 0 0" scale="1 1 1" class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10">
+      </a-box>
+    </a-marker>
+    <a-entity camera position="0 0 0"></a-entity>
   </a-scene>
 </body>
 <!--
