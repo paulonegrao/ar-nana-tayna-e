@@ -9,16 +9,7 @@
 
     <!-- import events.js script -->
     <script>
-        /* window.onload = function () {
-             document
-                 .querySelector("#animated-marker")
-                 .addEventListener("click", function () {
-                     // here you can change also a-scene or a-entity properties, like
-                     // changing your 3D model source, size, position and so on
-                     // or you can just open links, trigger actions...
-                     alert("Hi there!");
-                 });
-         };*/
+
         AFRAME.registerComponent('markerhandler', {
             init: function () {
                 const markerID = this.el.id;
@@ -34,7 +25,7 @@
 
                         var vArray = [0];
 
-                        // marker m4 plays multiple videos
+                        // if marker m4 play/pause multiple videos
                         if (markerID == "m1") {
                             vArray = ["v1", "v2", "v3"];
                         }
@@ -58,44 +49,16 @@
                                 v.attributes.videoplaying.value = "true";
                             }
                         }
-                        //const scale = aEntity.getAttribute('scale');
-                        //Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-                        //aEntity.setAttribute('scale', scale);
                     }
 
                 });
             }
         });
     </script>
-    <style>
-        .buttons {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .say-hi-button {
-            padding: 0.25em;
-            border-radius: 4px;
-            border: none;
-            background: white;
-            color: black;
-            width: 4em;
-            height: 2em;
-        }
-    </style>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-    <div class="buttons">
-        <button class="say-hi-button">SAY HI!</button>
-    </div>
+
     <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
     <a-scene embedded
         arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
@@ -109,13 +72,11 @@
             </video>
         </a-assets>
 
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" class="animated-marker" id="m4"
-            preset="hiro">
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="m4" preset="hiro">
             <a-box id="entity-v4" material='src: #v4'>
             </a-box>
         </a-marker>
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" class="animated-marker" id="m5"
-            preset="kanji">
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="m5" preset="kanji">
             <a-box id="entity-v5" material='src: #v5'>
             </a-box>
         </a-marker>
