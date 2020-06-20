@@ -203,14 +203,12 @@
         this.initialScale = this.el.object3D.scale.clone();
         this.scaleFactor = 1;
 
-        const theGH = document.querySelector(`#${thisGH}`);
-
         this.el.sceneEl.addEventListener("markerFound", (e) => {
           //theGH.addEventListener("markerFound", (e) => {
           this.isVisible = true;
         });
 
-        this.addEventListener("markerLost", (e) => {
+        this.el.sceneEl.addEventListener("markerLost", (e) => {
           this.isVisible = false;
         });
       },
