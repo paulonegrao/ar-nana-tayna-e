@@ -185,6 +185,7 @@
 
     AFRAME.registerComponent("gesture-handler", {
       schema: {
+        id: { default: "gh" },
         enabled: { default: true },
         rotationFactor: { default: 5 },
         minScale: { default: 0.3 },
@@ -192,59 +193,63 @@
       },
 
       init: function () {
-        this.handleScale = this.handleScale.bind(this);
-        this.handleRotation = this.handleRotation.bind(this);
 
-        this.isVisible = false;
-        this.initialScale = this.el.object3D.scale.clone();
-        this.scaleFactor = 1;
+        eval('const ' + this.data.id + ' = ' + this);
 
-        this.el.sceneEl.addEventListener("markerFound", (e) => {
-          this.isVisible = true;
+        this.data.id.handleScale = this.data.id.handleScale.bind(this.data.id);
+        this.data.id.handleRotation = this.data.id.handleRotation.bind(thisdata.id.);
+
+        this.data.id.isVisible = false;
+        this.data.id.initialScale = this.data.id.el.object3D.scale.clone();
+        this.data.id.scaleFactor = 1;
+
+        this.data.id.el.sceneEl.addEventListener("markerFound", (e) => {
+          //theGH.addEventListener("markerFound", (e) => {
+          this.data.id.isVisible = true;
         });
 
-        this.el.sceneEl.addEventListener("markerLost", (e) => {
-          this.isVisible = false;
+        this.data.id.addEventListener("markerLost", (e) => {
+          this.data.id.isVisible = false;
         });
       },
 
       update: function () {
-        if (this.data.enabled) {
-          this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
+        if (this.data.id.data.enabled) {
+          this.data.id.addEventListener("onefingermove", this.data.id.handleRotation);
+          this.data.id.addEventListener("twofingermove", this.data.id.handleScale);
         } else {
-          this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+          this.data.id.removeEventListener("onefingermove", this.data.id.handleRotation);
+          this.data.id.removeEventListener("twofingermove", this.data.id.handleScale);
         }
       },
 
       remove: function () {
-        this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
-        this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+        this.data.id.removeEventListener("onefingermove", this.data.id.handleRotation);
+        this.data.id.removeEventListener("twofingermove", this.data.id.handleScale);
       },
 
       handleRotation: function (event) {
-        if (this.isVisible) {
-          this.el.object3D.rotation.y +=
-            event.detail.positionChange.x * this.data.rotationFactor;
-          this.el.object3D.rotation.x +=
-            event.detail.positionChange.y * this.data.rotationFactor;
+        if (this.data.id.isVisible) {
+          this.data.id.el.object3D.rotation.y +=
+            event.detail.positionChange.x * this.data.id.data.rotationFactor;
+          this.data.id.el.object3D.rotation.x +=
+            event.detail.positionChange.y * this.data.id.data.rotationFactor;
         }
       },
 
       handleScale: function (event) {
-        if (this.isVisible) {
-          this.scaleFactor *=
+        if (this.data.id.isVisible) {
+          this.data.id.scaleFactor *=
             1 + event.detail.spreadChange / event.detail.startSpread;
 
-          this.scaleFactor = Math.min(
-            Math.max(this.scaleFactor, this.data.minScale),
-            this.data.maxScale
+          this.data.id.scaleFactor = Math.min(
+            Math.max(this.data.id.scaleFactor, this.data.id.data.minScale),
+            this.data.id.data.maxScale
           );
 
-          this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
-          this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
-          this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
+          this.data.id.el.object3D.scale.x = this.data.id.scaleFactor * this.data.id.initialScale.x;
+          this.data.id.el.object3D.scale.y = this.data.id.scaleFactor * this.data.id.initialScale.y;
+          this.data.id.el.object3D.scale.z = this.data.id.scaleFactor * this.data.id.initialScale.z;
         }
       },
     });
@@ -325,8 +330,8 @@
     </a-marker>
     <a-marker preset="kanji" id="m5" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
       raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="entity-v5" material='src: #v5' width="1" height="1" position="0 1 0" scale="1 1 1" class="clickable"
-        gesture-handler="minScale: 0.25; maxScale: 10">
+      <a-box id="e5" material='src: #v5' width="1" height="1" position="0 1 0" scale="1 1 1" class="clickable"
+        gesture-handler="minScale: 0.25; maxScale: 10; id: gh5">
       </a-box>
     </a-marker>
     <a-entity camera position="0 0 0"></a-entity>
