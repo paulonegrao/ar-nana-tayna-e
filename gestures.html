@@ -195,6 +195,7 @@
       init: function () {
         window['my' + this.data.id] = this;
 
+
         this.handleScale = this.handleScale.bind(this);
         this.handleRotation = this.handleRotation.bind(this);
 
@@ -202,28 +203,28 @@
         this.initialScale = this.el.object3D.scale.clone();
         this.scaleFactor = 1;
 
-        this.el.addEventListener("markerFound", (e) => {
+        this.el.sceneEl.children.m4.addEventListener("markerFound", (e) => {
           this.isVisible = true;
         });
 
-        this.el.addEventListener("markerLost", (e) => {
+        this.el.sceneEl.children.m4.addEventListener("markerLost", (e) => {
           this.isVisible = false;
         });
       },
 
       update: function () {
         if (this.data.enabled) {
-          this.el.addEventListener("onefingermove", this.handleRotation);
-          this.el.addEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.children.m4.addEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.children.m4.addEventListener("twofingermove", this.handleScale);
         } else {
-          this.el.removeEventListener("onefingermove", this.handleRotation);
-          this.el.removeEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.children.m4.removeEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.children.m4.removeEventListener("twofingermove", this.handleScale);
         }
       },
 
       remove: function () {
-        this.el.removeEventListener("onefingermove", this.handleRotation);
-        this.el.removeEventListener("twofingermove", this.handleScale);
+        this.el.sceneEl.children.m4.removeEventListener("onefingermove", this.handleRotation);
+        this.el.sceneEl.children.m4.removeEventListener("twofingermove", this.handleScale);
       },
 
       handleRotation: function (event) {
