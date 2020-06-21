@@ -203,28 +203,29 @@
         this.initialScale = this.el.object3D.scale.clone();
         this.scaleFactor = 1;
 
-        this.el.sceneEl.children.m4.addEventListener("markerFound", (e) => {
+        this.el.addEventListener("markerFound", (e) => {
           this.isVisible = true;
         });
 
-        this.el.sceneEl.children.m4.addEventListener("markerLost", (e) => {
+        this.el.addEventListener("markerLost", (e) => {
           this.isVisible = false;
         });
       },
 
       update: function () {
+
         if (this.data.enabled) {
-          this.el.sceneEl.children.m4.addEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.children.m4.addEventListener("twofingermove", this.handleScale);
+          this.el.addEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
         } else {
-          this.el.sceneEl.children.m4.removeEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.children.m4.removeEventListener("twofingermove", this.handleScale);
+          this.el.removeEventListener("onefingermove", this.handleRotation);
+          this.el.removeEventListener("twofingermove", this.handleScale);
         }
       },
 
       remove: function () {
-        this.el.sceneEl.children.m4.removeEventListener("onefingermove", this.handleRotation);
-        this.el.sceneEl.children.m4.removeEventListener("twofingermove", this.handleScale);
+        this.el.removeEventListener("onefingermove", this.handleRotation);
+        this.el.removeEventListener("twofingermove", this.handleScale);
       },
 
       handleRotation: function (event) {
@@ -320,16 +321,16 @@
       </video>
     </a-assets>
 
-    <a-marker preset="hiro" id="m4" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
-      raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="e4" material='src: #v4' width="1" height="1" position="0 0 0" scale="1 1 1" class="clickable"
-        gesture-handler="minScale: 0.25; maxScale: 10; id: gh4">
+    <a-marker gesture-handler="minScale: 0.25; maxScale: 10; id: gh4" preset="hiro" id="m4" smooth="true"
+      smoothCount="10" smoothTolerance=".01" smoothThreshold="5" raycaster="objects: .clickable" emitevents="true"
+      cursor="fuse: false; rayOrigin: mouse;">
+      <a-box id="e4" material='src: #v4' width="1" height="1" position="0 0 0" scale="1 1 1" class="clickable">
       </a-box>
     </a-marker>
-    <a-marker preset="kanji" id="m5" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
-      raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="e5" material='src: #v5' width="1" height="1" position="0 1 0" scale="1 1 1" class="clickable"
-        gesture-handler="minScale: 0.25; maxScale: 10; id: gh5">
+    <a-marker gesture-handler="minScale: 0.25; maxScale: 10; id: gh5" preset="kanji" id="m5" smooth="true"
+      smoothCount="10" smoothTolerance=".01" smoothThreshold="5" raycaster="objects: .clickable" emitevents="true"
+      cursor="fuse: false; rayOrigin: mouse;">
+      <a-box id="e5" material='src: #v5' width="1" height="1" position="0 1 0" scale="1 1 1" class="clickable">
       </a-box>
     </a-marker>
     <a-entity camera position="0 0 0"></a-entity>
