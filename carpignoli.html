@@ -16,14 +16,14 @@
 
                 const animatedMarker = document.querySelector(`#${markerID}`);
                 const elementID = markerID.split("m")[1];
-                const aEntity = document.querySelectorAll(`[parent="${markerID}"]`)[0];
+                //const aEntity = document.querySelectorAll(`[parent="${markerID}"]`)[0];
 
                 // every click, we make our model grow in size :)
                 animatedMarker.addEventListener('click', function (ev, target) {
                     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
 
-                    if (aEntity && intersectedElement === aEntity) {
-                        //if (intersectedElement && intersectedElement.attributes.parent.value == markerID) {
+                    //if (aEntity && intersectedElement === aEntity) {
+                    if (intersectedElement && intersectedElement.attributes.parent.value == markerID) {
 
                         var vArray = [0];
 
