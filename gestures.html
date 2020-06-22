@@ -181,6 +181,9 @@
 //////////////////////////////////////////////////////////////////////////
   </script>
   <script>
+    window['wct'] = 1;
+  </script>
+  <script>
     /* global AFRAME, THREE */
 
     AFRAME.registerComponent("gesture-handler", {
@@ -236,7 +239,9 @@
             event.detail.positionChange.y * this.data.rotationFactor;
         }
         alert(`id=${this.data.id}`);
-        alert(`3D=${this.el.object3D.el}`);
+        alert(`wct=${window.wct}`);
+        window.wct++;
+        alert(`this.el=${this.el}`);
       },
 
       handleScale: function (event) {
