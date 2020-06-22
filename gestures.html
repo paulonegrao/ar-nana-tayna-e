@@ -185,7 +185,7 @@
 
     AFRAME.registerComponent("gesture-handler", {
       schema: {
-        id: { default: "gh" },
+        id: { default: "" },
         enabled: { default: true },
         rotationFactor: { default: 5 },
         minScale: { default: 0.3 },
@@ -203,11 +203,11 @@
         this.initialScale = this.el.object3D.scale.clone();
         this.scaleFactor = 1;
 
-        this.el.parentEl.addEventListener("markerFound", (e) => {
+        this.el.sceneEl.children[this.data.id].addEventListener("markerFound", (e) => {
           this.isVisible = true;
         });
 
-        this.el.parentEl.addEventListener("markerLost", (e) => {
+        this.el.sceneEl.children[this.data.id].addEventListener("markerLost", (e) => {
           this.isVisible = false;
         });
       },
@@ -215,17 +215,17 @@
       update: function () {
 
         if (this.data.enabled) {
-          this.el.parentEl.addEventListener("onefingermove", this.handleRotation);
-          this.el.parentEl.addEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.children[this.data.id].addEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.children[this.data.id].addEventListener("twofingermove", this.handleScale);
         } else {
-          this.el.parentEl.removeEventListener("onefingermove", this.handleRotation);
-          this.el.parentEl.removeEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.children[this.data.id].removeEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.children[this.data.id].removeEventListener("twofingermove", this.handleScale);
         }
       },
 
       remove: function () {
-        this.el.parentEl.removeEventListener("onefingermove", this.handleRotation);
-        this.el.parentEl.removeEventListener("twofingermove", this.handleScale);
+        this.el.sceneEl.children[this.data.id].removeEventListener("onefingermove", this.handleRotation);
+        this.el.sceneEl.children[this.data.id].removeEventListener("twofingermove", this.handleScale);
       },
 
       handleRotation: function (event) {
@@ -323,13 +323,13 @@
 
     <a-marker preset="hiro" id="m4" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
       raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="e4" gesture-handler="minScale: 0.25; maxScale: 10; id: gh4" material='src: #v4' width="1" height="1"
+      <a-box id="e4" gesture-handler="minScale: 0.25; maxScale: 10; id: m4" material='src: #v4' width="1" height="1"
         position="0 0 0" scale="1 1 1" class="clickable">
       </a-box>
     </a-marker>
     <a-marker preset="kanji" id="m5" smooth="true" smoothCount="10" smoothTolerance=".01" smoothThreshold="5"
       raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
-      <a-box id="e5" gesture-handler="minScale: 0.25; maxScale: 10; id: gh5" material='src: #v5' width="1" height="1"
+      <a-box id="e5" gesture-handler="minScale: 0.25; maxScale: 10; id: m5" material='src: #v5' width="1" height="1"
         position="0 1 0" scale="1 1 1" class="clickable">
       </a-box>
     </a-marker>
