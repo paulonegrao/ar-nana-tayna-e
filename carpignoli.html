@@ -13,15 +13,17 @@
         AFRAME.registerComponent('markerhandler', {
             init: function () {
                 const markerID = this.el.id;
+
                 const animatedMarker = document.querySelector(`#${markerID}`);
                 const elementID = markerID.split("m")[1];
-                const aEntity = document.querySelector(`#entity-v${elementID}`);
+                const aEntity = document.querySelectorAll(`[parent="${markerID}"]`)[0];
 
                 // every click, we make our model grow in size :)
                 animatedMarker.addEventListener('click', function (ev, target) {
                     const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
 
                     if (aEntity && intersectedElement === aEntity) {
+                        //if (intersectedElement && intersectedElement.attributes.parent.value == markerID) {
 
                         var vArray = [0];
 
@@ -64,6 +66,18 @@
         arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
         <a-assets>
+            <video id="v1" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-L.png"
+                src="./assets/nana-tayna-e-mini-L.mp4" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
+            <video id="v2" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-R.png"
+                src="./assets/nana-tayna-e-mini-M.mp4" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
+            <video id="v3" videoplaying="false" autoplay muted loop="true" poster="./images/nana-tayna-e-mini-R.png"
+                src="./assets/nana-tayna-e-mini-R.mp4" crossorigin webkit-playsinline playsinline controls
+                preload="auto">
+            </video>
             <video id="v4" videoplaying="false" autoplay muted loop="true" src="./assets/video-PauDeChuva.m4v"
                 crossorigin webkit-playsinline playsinline controls preload="auto">
             </video>
@@ -72,12 +86,23 @@
             </video>
         </a-assets>
 
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="m4" preset="hiro">
-            <a-box id="entity-v4" material='src: #v4'>
+        <a-marker id="m1" markerhandler emitevents="true" cursor="rayOrigin: mouse;  fuse: true;" preset="custom"
+            type="pattern" url="./assets/pattern-marker-NanaTaynaE.patt">
+            <a-box parent="m1" id="b1" material='src: #v1' position="-1 0 0">
+            </a-box>
+            <a-box parent="m1" id="b2" material='src: #v2' position="0 0 0">
+            </a-box>
+            <a-box parent="m1" id="b3" material='src: #v3' position="1 0 0">
             </a-box>
         </a-marker>
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="m5" preset="kanji">
-            <a-box id="entity-v5" material='src: #v5'>
+        <a-marker id="m4" markerhandler emitevents="true" cursor="rayOrigin: mouse; fuse: true;" preset="custom"
+            type="pattern" url="./assets/pattern-maker-PauDeChuva.patt">
+            <a-box parent="m4" material='src: #v4'>
+            </a-box>
+        </a-marker>
+        <a-marker id="m5" markerhandler emitevents="true" cursor="rayOrigin: mouse; fuse: true;" preset="custom"
+            type="pattern" url="./assets/pattern-marker-Apito.patt">
+            <a-box parent="m5" material='src: #v5'>
             </a-box>
         </a-marker>
 
