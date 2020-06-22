@@ -203,11 +203,11 @@
         this.initialScale = this.el.object3D.scale.clone();
         this.scaleFactor = 1;
 
-        this.el.sceneEl.children[this.data.id].addEventListener("markerFound", (e) => {
+        this.el.sceneEl.addEventListener("markerFound", (e) => {
           this.isVisible = true;
         });
 
-        this.el.sceneEl.children[this.data.id].addEventListener("markerLost", (e) => {
+        this.el.sceneEl.addEventListener("markerLost", (e) => {
           this.isVisible = false;
         });
       },
@@ -215,17 +215,17 @@
       update: function () {
 
         if (this.data.enabled) {
-          this.el.sceneEl.children[this.data.id].addEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.children[this.data.id].addEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
         } else {
-          this.el.sceneEl.children[this.data.id].removeEventListener("onefingermove", this.handleRotation);
-          this.el.sceneEl.children[this.data.id].removeEventListener("twofingermove", this.handleScale);
+          this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+          this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
         }
       },
 
       remove: function () {
-        this.el.sceneEl.children[this.data.id].removeEventListener("onefingermove", this.handleRotation);
-        this.el.sceneEl.children[this.data.id].removeEventListener("twofingermove", this.handleScale);
+        this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+        this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
       },
 
       handleRotation: function (event) {
@@ -235,6 +235,8 @@
           this.el.object3D.rotation.x +=
             event.detail.positionChange.y * this.data.rotationFactor;
         }
+        alert(`id=${this.data.id}`);
+        alert(`3D=${this.el.object3D.el}`);
       },
 
       handleScale: function (event) {
